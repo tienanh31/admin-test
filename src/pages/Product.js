@@ -29,32 +29,7 @@ export default function Products() {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
-  const Datatour = [
-    {
-      id: 'a0c76995-a32a-40b9-a57b-e477ec4cde82',
-      cover: '/assets/images/products/product_1.jpg',
-      name: 'Nike Air Force 1 NDESTRUKT',
-      price: '44',
-      priceSale: '44',
-      status: 'new',
-    },
-    {
-      id: 'a0c76995-a32a-40b9-a57b-e477ec4cde82',
-      cover: '/assets/images/products/product_1.jpg',
-      name: 'Nike Air Force 1 NDESTRUKT',
-      price: '17.64',
-      priceSale: '123',
-      status: 'new',
-    },
-  ];
-  const person = {
-    id: 'a0c76995-a32a-40b9-a57b-e477ec4cde82',
-    cover: '/assets/images/products/product_1.jpg',
-    name: 'Nike Air Force 1 NDESTRUKT',
-    price: 17.64,
-    priceSale: 123,
-    status: 'new',
-  };
+
   const data1 = [];
   const [data, setData] = useState(data1);
   useEffect(() => {
