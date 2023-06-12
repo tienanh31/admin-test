@@ -30,6 +30,7 @@ import EditDiscount from './pages/EditDiscount/EditDiscount';
 import NewDiscount from './pages/newDiscount/NewDiscount';
 import NewComment from './pages/newComment/NewComment';
 import Comment from './pages/Comment';
+import Order from './pages/Order';
 import EditComment from './pages/EditComment/EditComment';
 
 // ----------------------------------------------------------------------
@@ -64,6 +65,7 @@ export default function Router() {
         { path: 'comment', element: <Comment /> },
         { path: 'newcomment', element: <NewComment /> },
         { path: 'editcomment', element: <EditComment /> },
+        { path: 'order', element: <Order /> },
       ],
     },
     {

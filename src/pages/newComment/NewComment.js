@@ -82,11 +82,11 @@ export default function NewComment() {
         </div>
         <div className="newUserItem">
           <label htmlFor="Rate">Rate</label>
-          <input onChange={Update3} type="text" placeholder="5" id="Rate" />
+          <input onChange={Update4} type="text" placeholder="5" id="Rate" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Detail">Detail</label>
-          <input onChange={Update4} placeholder="Detail..." id="Detail" />
+          <input onChange={Update3} placeholder="Detail..." id="Detail" />
         </div>
         <input type="button" onClick={handleSubmit} className="newUserButton" value="Create" />
       </form>
