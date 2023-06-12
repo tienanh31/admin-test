@@ -272,7 +272,7 @@ export default function Laptop() {
         </div>
         <div className="newUserItem">
           <label htmlFor="GraphicCard">Graphic Card</label>
-          <input defaultValue={data['Graphic Card']} type="text" onChange={Update44} id="GraphicCard" />
+          <input defaultValue={data.GraphicCard} type="text" onChange={Update44} id="GraphicCard" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Keyboard">KeyBoard</label>
@@ -289,7 +289,7 @@ export default function Laptop() {
 
         <div className="newUserItem">
           <label htmlFor="CommunicationPort">Communication Port</label>
-          <input defaultValue={data['Communication Port']} onChange={Update33} type="text" id="CommunicationPort" />
+          <input defaultValue={data.CommunicationPort} onChange={Update33} type="text" id="CommunicationPort" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Screen">Screen</label>
@@ -297,7 +297,7 @@ export default function Laptop() {
         </div>
         <div className="newUserItem">
           <label htmlFor="StorageDrive">Storage Drive</label>
-          <input defaultValue={data['Storage Drive']} onChange={Update100} type="text" id="StorageDrive" />
+          <input defaultValue={data.StorageDrive} onChange={Update100} type="text" id="StorageDrive" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Lan">LAN</label>
