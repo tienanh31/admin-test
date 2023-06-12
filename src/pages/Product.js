@@ -41,7 +41,7 @@ export default function Products() {
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           setData((pre) => [...pre, childSnapshot.val()]);
-          Datatour.push(data);
+          data1.push(data);
         });
       },
       {
