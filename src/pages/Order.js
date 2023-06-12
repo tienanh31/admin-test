@@ -239,7 +239,7 @@ export default function Oder() {
           </Typography>
           <a href="/dashboard/newuser">
             <Button onClick={() => setOpenPopup(true)} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-              New User
+              New Order
             </Button>
           </a>
         </Stack>

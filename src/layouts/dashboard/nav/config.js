@@ -33,7 +33,7 @@ const navConfig = [
   },
   {
     title: 'Order',
-    path: '/dashboard/tour',
+    path: '/dashboard/order',
     icon: icon('ic_tour'),
   },
   {
