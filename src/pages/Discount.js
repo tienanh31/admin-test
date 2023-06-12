@@ -221,7 +221,7 @@ export default function Discount() {
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} />
           <Typography variant="h4" gutterBottom>
-            User
+            Discount
           </Typography>
           <a href="/dashboard/newdiscount">
             <Button onClick={() => setOpenPopup(true)} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>

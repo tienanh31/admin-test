@@ -235,7 +235,7 @@ export default function Oder() {
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} />
           <Typography variant="h4" gutterBottom>
-            User
+            Order
           </Typography>
           <a href="/dashboard/newuser">
             <Button onClick={() => setOpenPopup(true)} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>

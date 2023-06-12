@@ -222,10 +222,10 @@ export default function Comment() {
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} />
           <Typography variant="h4" gutterBottom>
-            User
+            Comment
           </Typography>
           <a href="/dashboard/newcomment">
-            <Button onClick={() => setOpenPopup(true)} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+            <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
               New Comment
             </Button>
           </a>

@@ -85,23 +85,23 @@ export default function EditComment() {
   console.log(data);
   return (
     <div className="newUser">
-      <h1 className="newUserTitle">New Comment</h1>
+      <h1 className="newUserTitle">Comment</h1>
       <form className="newUserForm">
         <div className="newUserItem">
           <label htmlFor="User_ID">User ID</label>
-          <input onChange={Update1} type="text" placeholder="01" id="User_ID" />
+          <input onChange={Update1} type="text" placeholder="01" value={data.User_ID} id="User_ID" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Product_ID">Product ID</label>
-          <input onChange={Update2} type="text" placeholder="02" id="Product_ID" />
+          <input onChange={Update2} type="text" placeholder="02" value={data.Product_ID} id="Product_ID" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Rate">Rate</label>
-          <input onChange={Update3} type="text" placeholder="5" id="Rate" />
+          <input onChange={Update3} type="text" value={data.Rate} placeholder="5" id="Rate" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Detail">Detail</label>
-          <input onChange={Update4} placeholder="Detail..." id="Detail" />
+          <input onChange={Update4} value={data.Detail} placeholder="Detail..." id="Detail" />
         </div>
         <input type="button" onClick={Set} className="newUserButton" value="Update" />
         <input type="button" onClick={Delete} className="newUserButton" value="Delete" />
