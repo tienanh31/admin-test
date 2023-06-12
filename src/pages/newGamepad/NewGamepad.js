@@ -21,7 +21,7 @@ export default function NewGamepad() {
     const a = Math.floor(Math.random() * 100);
     set(ref(db, `/Gamepad/${ID}`), {
       Type: type,
-      product_ID: a,
+      product_ID: ID,
     });
     alert('Thêm Thông tin Gamepad thành công!');
   }

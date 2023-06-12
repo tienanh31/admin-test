@@ -61,7 +61,7 @@ export default function NewDiscount() {
       name: Name,
       ratio: Ratio,
       state: State,
-      ID: a,
+      ID: parseInt(a, 10),
     });
     alert('Thêm Phiếu giảm giá thành công!');
     clearInput();

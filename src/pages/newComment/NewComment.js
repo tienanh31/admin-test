@@ -53,7 +53,7 @@ export default function NewComment() {
       User_ID: user_ID,
       Rate: rate,
       Detail: detail,
-      ID: a,
+      ID: parseInt(a, 10),
     });
     alert('Thêm Comment thành công!');
     clearInput();

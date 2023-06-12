@@ -55,6 +55,7 @@ export default function NewHeadphone() {
       Impedance: impedance,
       Microphone: microphone,
       Type: type,
+      product_ID: ID,
     });
     alert('Thêm Thông tin Headphone thành công!');
   }

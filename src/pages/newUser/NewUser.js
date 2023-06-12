@@ -122,6 +122,8 @@ export default function NewUser() {
   function writeUserData(FirstName, LastName, Email, Phone, Avatar, Pass, Enabled) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
+    const b = Math.floor(Math.random() * 100);
+    const c = a + b;
 
     set(ref(db, `/App_user/${a}`), {
       first_Name: FirstName,
@@ -131,10 +133,11 @@ export default function NewUser() {
       avatar: Avatar,
       password: Pass,
       enabled: Enabled,
-      ID: a,
+      ID: parseInt(a, 10),
       reset_password_token: '',
     });
     alert('Thêm Người dùng thành công!');
+    console.log(a);
     clearInput();
   }
   function clearInput() {

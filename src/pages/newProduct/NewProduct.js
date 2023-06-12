@@ -87,7 +87,7 @@ export default function NewProduct() {
       trademark: '',
       evaluate: '',
       discount_ID: '',
-      ID: a,
+      ID: parseInt(a, 10),
     });
     const key = 'Name';
     localStorage.setItem(key, name);
