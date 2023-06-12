@@ -193,7 +193,7 @@ export default function Headphone() {
     myFunction();
   }, [data]);
   function myFunction() {
-    document.getElementById('state').value = data.state;
+    document.getElementById('state').value = statee;
   }
   function handleClick() {
     Set();

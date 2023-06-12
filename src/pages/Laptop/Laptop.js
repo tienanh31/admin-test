@@ -232,7 +232,8 @@ export default function Laptop() {
     myFunction();
   }, [data]);
   function myFunction() {
-    document.getElementById('state').value = data.state;
+    console.log(data.state);
+    document.getElementById('state').value = statee;
   }
   function handleClick() {
     Set();
@@ -302,8 +303,8 @@ export default function Laptop() {
         <div className="newUserItem">
           <label htmlFor="Lan">LAN</label>
           <select defaultValue={data.Lan} onChange={Update66} className="newUserSelect" name="active" id="Lan">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </div>
         <div className="newUserItem">

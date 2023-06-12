@@ -172,7 +172,7 @@ export default function Mouse() {
     myFunction();
   }, [data]);
   function myFunction() {
-    document.getElementById('state').value = data.state;
+    document.getElementById('state').value = statee;
   }
   function handleClick() {
     Set();

@@ -112,6 +112,7 @@ export default function EditUser() {
     myFunction();
   }, [data]);
   function myFunction() {
+    console.log(data.enabled);
     document.getElementById('enabled').value = data.enabled;
     console.log(document.getElementById('enabled').value);
   }
@@ -149,8 +150,8 @@ export default function EditUser() {
         <div className="newUserItem">
           <label htmlFor="enabled">Enabled</label>
           <select onChange={Update7} className="newUserSelect" name="active" id="enabled">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </div>
         <input type="button" onClick={Set} className="newUserButton" value="Update" />

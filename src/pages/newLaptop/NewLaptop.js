@@ -179,8 +179,8 @@ export default function NewLaptop() {
           <label htmlFor="Lan">LAN</label>
           <select onChange={Update6} className="newUserSelect" name="active" id="Lan">
             <option value="" selected disabled />
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </div>
         <input type="button" onClick={handleSubmit} className="newUserButton" value="Create" />
