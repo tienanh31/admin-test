@@ -32,7 +32,7 @@ export default function EditComment() {
 
     setRate(event.target.value);
   };
-  const Comment = localStorage.getItem('comment');
+  const comment = localStorage.getItem('ID_comment');
   const email1 = localStorage.getItem('email');
   const enabled1 = localStorage.getItem('enabled');
   const first_Name1 = localStorage.getItem('first_Name');
@@ -49,6 +49,7 @@ export default function EditComment() {
       window.location = '/dashboard/comment';
     });
   };
+  const namee = localStorage.getItem('comment');
   const Set = () => {
     console.log('sss');
 
@@ -56,12 +57,12 @@ export default function EditComment() {
   };
   function writeUserData(product_ID, user_ID, rate, detail) {
     const db = getDatabase();
-    set(ref(db, `/User_comment/${Comment}`), {
+    set(ref(db, `/User_comment/${namee}`), {
       User_ID: user_ID || document.getElementById('User_ID').defaultValue,
       Product_ID: product_ID || document.getElementById('Product_ID').defaultValue,
       Rate: rate || document.getElementById('Rate').defaultValue,
       Detail: detail || document.getElementById('Detail').defaultValue,
-      ID: user_ID,
+      ID: namee,
     });
     alert('Cập nhật  công thành công!');
   }
@@ -72,8 +73,7 @@ export default function EditComment() {
   useEffect(() => {
     const db = getDatabase();
 
-    const tasksRef = ref(db, `/User_comment/${Comment}`);
-
+    const tasksRef = ref(db, `/User_comment/${namee}`);
     get(tasksRef)
       .then((snapshot) => {
         setData(snapshot.val());

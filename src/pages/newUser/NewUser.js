@@ -97,6 +97,7 @@ export default function NewUser() {
     handleInputBlur6();
     handleInputBlur7();
   };
+
   console.log(email);
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -84,7 +84,7 @@ export default function EditUser() {
       phone: Phone || document.getElementById('phone').defaultValue,
       avatar: Avatar || document.getElementById('avatar').defaultValue,
       password: Pass || document.getElementById('pass').defaultValue,
-      enabled: Enabled || document.getElementById('pass').defaultValue,
+      enabled: Enabled || document.getElementById('enabled').defaultValue,
       ID: user_ID,
     });
     alert('Cập nhật thành công thành công!');

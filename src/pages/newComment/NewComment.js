@@ -47,14 +47,16 @@ export default function NewComment() {
   function writeUserData(product_ID, user_ID, rate, detail) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
-
+    const b = a;
     set(ref(db, `/User_comment/${a}`), {
       Product_ID: product_ID,
       User_ID: user_ID,
       Rate: rate,
       Detail: detail,
-      ID: parseInt(a, 10),
+      ID: parseInt(b, 10),
     });
+    const key = 'comment';
+    localStorage.setItem(key, b);
     alert('Thêm Comment thành công!');
     clearInput();
   }

@@ -86,7 +86,7 @@ export default function Oder() {
   useEffect(() => {
     const db = getDatabase();
     // Update the document title using the browser API
-    const starCountRef = ref(db, 'App_user/');
+    const starCountRef = ref(db, 'Order/');
     onValue(
       starCountRef,
       (snapshot) => {
@@ -206,23 +206,15 @@ export default function Oder() {
   const [selectedRow, setSelectedRow] = useState(null);
   const handleRowClick = (row) => {
     setSelectedRow(row);
-    const key = 'user';
+    const key = 'order_ID';
     localStorage.setItem(key, selectedRow.ID);
-    const key1 = 'avatar';
-    localStorage.setItem(key1, selectedRow.avatar);
-    const key2 = 'email';
-    localStorage.setItem(key2, selectedRow.email);
-    const key3 = 'enabled';
-    localStorage.setItem(key3, selectedRow.enabled);
-    const key4 = 'first_Name';
-    localStorage.setItem(key4, selectedRow.first_Name);
-    const key5 = 'last_Name';
-    localStorage.setItem(key5, selectedRow.last_Name);
-    const key6 = 'password';
-    localStorage.setItem(key6, selectedRow.password);
-    const key7 = 'phone';
-    localStorage.setItem(key7, selectedRow.phone);
-    window.location = '/dashboard/edituser';
+    const key1 = 'user_ID';
+    localStorage.setItem(key1, selectedRow.user_ID);
+    const key2 = 'order_total';
+    localStorage.setItem(key2, selectedRow.order_total);
+    const key3 = 'order_status';
+    localStorage.setItem(key3, selectedRow.order_status);
+    window.location = '/dashboard/editorder';
   };
   const handleRowClick1 = (row) => {
     const key = 'user';
@@ -237,7 +229,7 @@ export default function Oder() {
           <Typography variant="h4" gutterBottom>
             Order
           </Typography>
-          <a href="/dashboard/newuser">
+          <a href="/dashboard/neworder">
             <Button onClick={() => setOpenPopup(true)} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
               New Order
             </Button>
@@ -253,10 +245,10 @@ export default function Oder() {
                 <TableHead>
                   <TableRow>
                     <TableCell> </TableCell>
-                    <TableCell>Id</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Phone</TableCell>
-                    <TableCell>PassWord</TableCell>
+                    <TableCell>ID</TableCell>
+                    <TableCell>User ID</TableCell>
+                    <TableCell>Total</TableCell>
+                    <TableCell>Status</TableCell>
 
                     <TableCell> </TableCell>
                   </TableRow>
@@ -273,9 +265,13 @@ export default function Oder() {
                         <Checkbox />
                       </TableCell>
                       <TableCell>{row.ID}</TableCell>
-                      <TableCell>{row.email}</TableCell>
-                      <TableCell>{row.phone}</TableCell>
-                      <TableCell>{row.password}</TableCell>
+                      <TableCell>{row.user_ID}</TableCell>
+                      <TableCell>{row.order_total}</TableCell>
+                      <TableCell>
+                        <Label color={row.order_status === 'Delivering' ? 'success' : 'error'}>
+                          {row.order_status}
+                        </Label>
+                      </TableCell>
                       <TableCell>
                         <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
                           <Iconify icon={'eva:more-vertical-fill'} />

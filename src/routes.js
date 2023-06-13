@@ -29,9 +29,11 @@ import Discount from './pages/Discount';
 import EditDiscount from './pages/EditDiscount/EditDiscount';
 import NewDiscount from './pages/newDiscount/NewDiscount';
 import NewComment from './pages/newComment/NewComment';
+import NewOrder from './pages/newOrder/NewOrder';
 import Comment from './pages/Comment';
 import Order from './pages/Order';
 import EditComment from './pages/EditComment/EditComment';
+import EditOrder from './pages/EditOrder/EditOrder';
 
 // ----------------------------------------------------------------------
 
@@ -66,6 +68,8 @@ export default function Router() {
         { path: 'newcomment', element: <NewComment /> },
         { path: 'editcomment', element: <EditComment /> },
         { path: 'order', element: <Order /> },
+        { path: 'neworder', element: <NewOrder /> },
+        { path: 'editorder', element: <EditOrder /> },
       ],
     },
     {
