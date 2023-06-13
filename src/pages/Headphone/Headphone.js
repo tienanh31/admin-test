@@ -119,7 +119,7 @@ export default function Headphone() {
   useEffect(() => {
     const db = getDatabase();
 
-    const tasksRef = ref(db, `/Headphone/${Id}`);
+    const tasksRef = ref(db, `/headphone/${Id}`);
 
     get(tasksRef)
       .then((snapshot) => {
@@ -129,12 +129,16 @@ export default function Headphone() {
         console.error(err);
       });
   }, []);
+  console.log(data);
+
   const Set = () => {
     console.log('sss');
     writeUserData(name, brand_ID, color, price, insurance, description, category_ID, thumbnail, state);
   };
   const Delete = () => {
     const db = getDatabase();
+    const tasksRef1 = ref(db, `/headphone/${Id}`);
+    remove(tasksRef1).then(() => {});
     const tasksRef = ref(db, `/Product/${Id}`);
     remove(tasksRef).then(() => {
       console.log('sss');
@@ -146,7 +150,7 @@ export default function Headphone() {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
 
-    set(ref(db, `/Product/ ${Id}`), {
+    set(ref(db, `/Product/${Id}`), {
       name: Name || document.getElementById('name').defaultValue,
       brand_ID: Brand || document.getElementById('brand').defaultValue,
       color: Color || document.getElementById('color').defaultValue,
@@ -179,9 +183,9 @@ export default function Headphone() {
   function writeUserData1(connection_Standard, connection_Type, impedance, microphone, type) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
-    set(ref(db, `/Headphone/ ${Id}`), {
-      ConnectionStandard: connection_Standard || document.getElementById('ConnectionStandard').defaultValue,
-      ConnectionType: connection_Type || document.getElementById('ConnectionType').defaultValue,
+    set(ref(db, `/headphone/${Id}`), {
+      Connection_Standard: connection_Standard || document.getElementById('ConnectionStandard').defaultValue,
+      Connection_Type: connection_Type || document.getElementById('ConnectionType').defaultValue,
       Impedance: impedance || document.getElementById('Impedance').defaultValue,
       Microphone: microphone || document.getElementById('Microphone').defaultValue,
       Type: type || document.getElementById('Type').defaultValue,
@@ -229,7 +233,7 @@ export default function Headphone() {
         </div>
         <div className="newUserItem">
           <label htmlFor="ConnectionType">Connection Type</label>
-          <input defaultValue={data.onnection_Type} onChange={Update22} type="text" id="ConnectionType" />
+          <input defaultValue={data.Connection_Type} onChange={Update22} type="text" id="ConnectionType" />
         </div>
         <div className="newUserItem">
           <label htmlFor="Impedance">Impedance</label>

@@ -38,6 +38,13 @@ export default function EditDiscount() {
 
     setEnabled(event.target.value);
   };
+  const [user, setUser] = useState();
+
+  const Update10 = (event) => {
+    // 👇 Get input value from "event"
+
+    setUser(event.target.value);
+  };
   const Delete = () => {
     const db = getDatabase();
     const tasksRef = ref(db, `/Discount/${data.ID}`);
@@ -51,9 +58,9 @@ export default function EditDiscount() {
   const Set = () => {
     console.log('sss');
 
-    writeUserData(Type, expirationDate, name, ratio, state);
+    writeUserData(Type, expirationDate, name, ratio, state, user);
   };
-  function writeUserData(type, expirationdate, Name, Ratio, State) {
+  function writeUserData(type, expirationdate, Name, Ratio, State, User) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
 
@@ -64,6 +71,7 @@ export default function EditDiscount() {
       ratio: Ratio || document.getElementById('pass').defaultValue,
       state: State || document.getElementById('enabled').value,
       ID: discount_ID,
+      user_ID: User || document.getElementById('user_ID').value,
     });
     alert('Cập nhật thành công!');
   }
@@ -107,6 +115,16 @@ export default function EditDiscount() {
         <div className="newUserItem">
           <label htmlFor="email">Name</label>
           <input onChange={Update3} type="text" defaultValue={data.name} id="email" />
+        </div>
+        <div className="newUserItem">
+          <label htmlFor="user_ID">User ID</label>
+          <input
+            onChange={Update10}
+            defaultValue={data.user_ID}
+            type="text"
+            placeholder="User được nhận"
+            id="user_ID"
+          />
         </div>
         <div className="newUserItem">
           <label htmlFor="pass">Ratio</label>

@@ -1,5 +1,6 @@
 import './newComment.css';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
 import { database } from '../../Firebase-config';
 
@@ -31,6 +32,32 @@ export default function NewComment() {
 
     setRate(event.target.value);
   };
+  function generateUniqueRandomNumber() {
+    const MAX_NUMBER = 100;
+    const numbers = [];
+
+    // Tạo mảng chứa các số từ 1 đến 100
+    for (let i = 1; i <= MAX_NUMBER; i += 1) {
+      numbers.push(i);
+    }
+
+    // Trộn mảng để tạo sự ngẫu nhiên
+    for (let i = numbers.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+
+    // Lấy số đầu tiên trong mảng và xóa nó khỏi mảng
+    return numbers.shift();
+  }
+
+  const [idKey, setIdKey] = useState(uuidv4());
+
+  useEffect(() => {
+    const randomKey = generateUniqueRandomNumber();
+    setIdKey(randomKey);
+  }, []);
+  console.log(idKey);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (Product_ID === '' || User_ID === '' || Rate === '' || Detail === '') {
@@ -48,15 +75,15 @@ export default function NewComment() {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
     const b = a;
-    set(ref(db, `/User_comment/${a}`), {
-      Product_ID: product_ID,
+    set(ref(db, `/User_comment/${idKey}`), {
+      Product_ID: parseInt(product_ID, 10),
       User_ID: user_ID,
-      Rate: rate,
+      Rate: parseInt(rate, 10),
       Detail: detail,
-      ID: parseInt(b, 10),
+      ID: idKey,
     });
     const key = 'comment';
-    localStorage.setItem(key, b);
+    localStorage.setItem(key, idKey);
     alert('Thêm Comment thành công!');
     clearInput();
   }

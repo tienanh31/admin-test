@@ -49,7 +49,7 @@ export default function NewHeadphone() {
   function writeUserData(connection_Standard, connection_Type, impedance, microphone, type) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
-    set(ref(db, `/Headphone/${ID}`), {
+    set(ref(db, `/headphone/${ID}`), {
       Connection_Standard: connection_Standard,
       Connection_Type: connection_Type,
       Impedance: impedance,

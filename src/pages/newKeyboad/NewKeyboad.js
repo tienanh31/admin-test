@@ -30,7 +30,7 @@ export default function NewKeybord() {
     set(ref(db, `/Keyboard/${ID}`), {
       Led: led,
       Type: type,
-      product_ID: a,
+      product_ID: ID,
     });
     alert('Thêm Thông tin Keyboard thành công!');
   }

@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-import { getDatabase, ref, set, onValue, remove } from 'firebase/database';
+import { getDatabase, ref, set, get, onValue, remove } from 'firebase/database';
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -88,7 +88,31 @@ export default function DashboardAppPage() {
       }
     );
   }, []);
+  const [cache, setCache] = useState('');
+  const [cache1, setCache1] = useState('');
 
+  useEffect(() => {
+    const db = getDatabase();
+
+    const tasksRef = ref(db, '/Order/');
+
+    get(tasksRef)
+      .then((snapshot) => {
+        setCache(snapshot.val());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+  console.log(cache);
+  // const IdArray = [];
+
+  // useEffect(() => {
+  //   for (let i = 0; i < data.length; i += 1) {
+  //     IdArray.push(cache[i].key);
+  //   }
+  // }, [cache]);
+  // console.log(IdArray);
   useEffect(() => {
     const db = getDatabase();
     // Update the document title using the browser API

@@ -1,6 +1,7 @@
 import './newUser.css';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
+import { v4 as uuidv4 } from 'uuid';
 import { database } from '../../Firebase-config';
 
 export default function NewUser() {
@@ -97,7 +98,34 @@ export default function NewUser() {
     handleInputBlur6();
     handleInputBlur7();
   };
+  function generateUniqueRandomNumber() {
+    const MAX_NUMBER = 100;
+    const numbers = [];
 
+    // Tạo mảng chứa các số từ 1 đến 100
+    for (let i = 1; i <= MAX_NUMBER; i += 1) {
+      numbers.push(i);
+    }
+
+    // Trộn mảng để tạo sự ngẫu nhiên
+    for (let i = numbers.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+
+    // Lấy số đầu tiên trong mảng và xóa nó khỏi mảng
+    return numbers.shift();
+  }
+
+  const [idKey, setIdKey] = useState(uuidv4());
+
+  useEffect(() => {
+    const randomKey = generateUniqueRandomNumber();
+    setIdKey(randomKey);
+  }, []);
+  console.log(idKey);
+
+  // Lưu idKey này lên Firebase Realtime Database
   console.log(email);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -123,10 +151,8 @@ export default function NewUser() {
   function writeUserData(FirstName, LastName, Email, Phone, Avatar, Pass, Enabled) {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
-    const b = Math.floor(Math.random() * 100);
-    const c = a + b;
 
-    set(ref(db, `/App_user/${a}`), {
+    set(ref(db, `/App_user/${idKey}`), {
       first_Name: FirstName,
       last_Name: LastName,
       email: Email,
@@ -134,11 +160,10 @@ export default function NewUser() {
       avatar: Avatar,
       password: Pass,
       enabled: Enabled,
-      ID: parseInt(a, 10),
+      ID: idKey,
       reset_password_token: '',
     });
     alert('Thêm Người dùng thành công!');
-    console.log(a);
     clearInput();
   }
   function clearInput() {

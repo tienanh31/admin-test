@@ -125,6 +125,8 @@ export default function Mouse() {
       alert('Xoá sản phẩm thành công!');
       window.location = '/dashboard/product';
     });
+    const tasksRef1 = ref(db, `/Mouse/${Id}`);
+    remove(tasksRef1).then(() => {});
   };
   function writeUserData(Name, Brand, Color, Price, Insurance, Description, Caterogy, Thumbnail, State) {
     const db = getDatabase();

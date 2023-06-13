@@ -1,5 +1,6 @@
 import './newDiscount.css';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
 import { database } from '../../Firebase-config';
 
@@ -38,6 +39,13 @@ export default function NewDiscount() {
 
     setEnabled(event.target.value);
   };
+  const [user, setUser] = useState('');
+
+  const Update10 = (event) => {
+    // 👇 Get input value from "event"
+
+    setUser(event.target.value);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     if (Type === '' || expirationDate === '' || name === '' || ratio === '' || state === '') {
@@ -46,6 +54,32 @@ export default function NewDiscount() {
       Set();
     }
   };
+  function generateUniqueRandomNumber() {
+    const MAX_NUMBER = 100;
+    const numbers = [];
+
+    // Tạo mảng chứa các số từ 1 đến 100
+    for (let i = 1; i <= MAX_NUMBER; i += 1) {
+      numbers.push(i);
+    }
+
+    // Trộn mảng để tạo sự ngẫu nhiên
+    for (let i = numbers.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+
+    // Lấy số đầu tiên trong mảng và xóa nó khỏi mảng
+    return numbers.shift();
+  }
+
+  const [idKey, setIdKey] = useState(uuidv4());
+
+  useEffect(() => {
+    const randomKey = generateUniqueRandomNumber();
+    setIdKey(randomKey);
+  }, []);
+  console.log(idKey);
   const Set = () => {
     console.log('sss');
 
@@ -55,13 +89,14 @@ export default function NewDiscount() {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
 
-    set(ref(db, `/Discount/${a}`), {
+    set(ref(db, `/Discount/${idKey}`), {
       Type: type,
       expirationDate: expirationdate,
       name: Name,
       ratio: Ratio,
       state: State,
-      ID: parseInt(a, 10),
+      ID: idKey,
+      user_ID: user,
     });
     alert('Thêm Phiếu giảm giá thành công!');
     clearInput();
@@ -88,6 +123,10 @@ export default function NewDiscount() {
         <div className="newUserItem">
           <label htmlFor="email">Name</label>
           <input onChange={Update3} type="text" placeholder="Miễn Phí Ship" id="email" />
+        </div>
+        <div className="newUserItem">
+          <label htmlFor="user_ID">User ID</label>
+          <input onChange={Update10} type="text" placeholder="User được nhận" id="user_ID" />
         </div>
         <div className="newUserItem">
           <label htmlFor="pass">Ratio</label>

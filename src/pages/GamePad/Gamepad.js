@@ -106,6 +106,8 @@ export default function Gamepad() {
   };
   const Delete = () => {
     const db = getDatabase();
+    const tasksRef1 = ref(db, `/Gamepad/${Id}`);
+    remove(tasksRef1).then(() => {});
     const tasksRef = ref(db, `/Product/${Id}`);
     remove(tasksRef).then(() => {
       console.log('sss');
@@ -149,7 +151,7 @@ export default function Gamepad() {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
     set(ref(db, `/Gamepad/${Id}`), {
-      type: type || document.getElementById('type').defaultValue,
+      Type: type || document.getElementById('type').defaultValue,
       product_ID: Id,
     });
   }
@@ -191,7 +193,7 @@ export default function Gamepad() {
         </div>
         <div className="newUserItem">
           <label htmlFor="type">Type</label>
-          <input defaultValue={data.type} onChange={Update11} type="text" id="type" />
+          <input defaultValue={data.Type} onChange={Update11} type="text" id="type" />
         </div>
         <div className="newUserItem">
           <label htmlFor="description">Description</label>

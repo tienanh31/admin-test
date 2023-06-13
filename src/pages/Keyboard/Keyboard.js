@@ -113,6 +113,8 @@ export default function Keyboard() {
   };
   const Delete = () => {
     const db = getDatabase();
+    const tasksRef1 = ref(db, `/Keyboard/${Id}`);
+    remove(tasksRef1).then(() => {});
     const tasksRef = ref(db, `/Product/${Id}`);
     remove(tasksRef).then(() => {
       alert('Xoá sản phẩm thành công!');
@@ -123,7 +125,7 @@ export default function Keyboard() {
     const db = getDatabase();
     const a = Math.floor(Math.random() * 100);
 
-    set(ref(db, `/Product/ ${Id}`), {
+    set(ref(db, `/Product/${Id}`), {
       name: Name || document.getElementById('name').defaultValue,
       brand_ID: Brand || document.getElementById('brand').defaultValue,
       color: Color || document.getElementById('color').defaultValue,

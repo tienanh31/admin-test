@@ -182,25 +182,6 @@ export default function NewOrder() {
 
   console.log(cache1.ID);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (
-      (userID === '' ||
-        order_total === '' ||
-        order_status === '' ||
-        product_ID === '' ||
-        product_Type === '' ||
-        quantity === '',
-      address_ID === '',
-      phone === '',
-      email === '',
-      receiver === '')
-    ) {
-      alert('Vui lòng nhập đầy đủ thông tin');
-    } else {
-      Set();
-    }
-  };
   console.log(Order_status);
   console.log(Order_total);
   console.log(User_ID);
@@ -326,8 +307,8 @@ export default function NewOrder() {
           />
         </div>
         <div className="newUserItem">
-          <label htmlFor="address_ID">Address ID</label>
-          <input onChange={Update7} defaultValue={cache1.address_ID} type="text" placeholder="1" id="address_ID" />
+          <label htmlFor="andress_ID">Address ID</label>
+          <input onChange={Update7} defaultValue={cache1.address_ID} type="text" placeholder="1" id="andress_ID" />
         </div>
 
         <div className="newUserItem">
@@ -361,7 +342,7 @@ export default function NewOrder() {
           <input onChange={Update10} defaultValue={cache1.receiver} type="text" placeholder="1" id="receiver" />
         </div>
 
-        <input type="button" onClick={handleSubmit} className="newUserButton" value="Update" />
+        <input type="button" onClick={Set} className="newUserButton" value="Update" />
         <input type="button" onClick={handleClick} className="newUserButton" value="Delete" />
       </form>
     </div>

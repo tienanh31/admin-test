@@ -156,6 +156,10 @@ export default function Laptop() {
       alert('Xoá sản phẩm thành công!');
       window.location = '/dashboard/product';
     });
+    const tasksRef1 = ref(db, `/Laptop/${Id}`);
+    remove(tasksRef1).then(() => {
+      console.log('location removed');
+    });
   };
   const Data_tour = [];
   const [data, setData] = useState('');
