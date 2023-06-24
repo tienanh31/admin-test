@@ -6,6 +6,7 @@ import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 import { getDatabase, ref, set, get, onValue, remove } from 'firebase/database';
+
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -26,6 +27,11 @@ import {
 export default function DashboardAppPage() {
   const Datatour = [];
   const Datatour1 = [];
+  const Datatourl = [];
+  const Datatourm = [];
+  const Datatourh = [];
+  const Datatourk = [];
+  const Datatourg = [];
 
   const Datatour2 = [];
 
@@ -38,11 +44,11 @@ export default function DashboardAppPage() {
   const Datatour8 = [];
 
   const [data8, setData8] = useState(Datatour);
-  const [data, setData] = useState(Datatour);
-  const [data1, setData1] = useState(Datatour1);
-  const [data2, setData2] = useState(Datatour2);
-  const [data3, setData3] = useState(Datatour3);
-  const [data4, setData4] = useState(Datatour4);
+  const [datal, setDatal] = useState(Datatourl);
+  const [datam, setDatam] = useState(Datatourm);
+  const [datak, setDatak] = useState(Datatourk);
+  const [datag, setDatag] = useState(Datatourg);
+  const [datah, setDatah] = useState(Datatourh);
   const [data5, setData5] = useState(Datatour5);
   const [data6, setData6] = useState(Datatour6);
   const [data7, setData7] = useState(Datatour7);
@@ -89,22 +95,166 @@ export default function DashboardAppPage() {
     );
   }, []);
   const [cache, setCache] = useState('');
+  const cacheCart = [];
   const [cache1, setCache1] = useState('');
 
   useEffect(() => {
     const db = getDatabase();
+    // Update the document title using the browser API
+    const starCountRef = ref(db, 'Cart/');
+    onValue(
+      starCountRef,
+      (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          setCache((pre) => [...pre, childSnapshot.val()]);
+          cacheCart.push(cache);
+        });
+      },
 
-    const tasksRef = ref(db, '/Order/');
-
-    get(tasksRef)
-      .then((snapshot) => {
-        setCache(snapshot.val());
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      {
+        onlyOnce: true,
+      }
+    );
   }, []);
   console.log(cache);
+  const people1 = [
+    { name: 'John', age: 30, city: 'New York' },
+    { name: 'Mary', age: 25, city: 'Los Angeles' },
+    { name: 'Bob', age: 40, city: 'Chicago' },
+  ];
+  console.log(people1);
+  const [productList, setProductList] = useState([]);
+
+  // Lấy giá trị 'name' từ mỗi đối tượng trong mảng people1 và lưu vào mảng people2
+  useEffect(() => {
+    if (Array.isArray(cache)) {
+      const newProductList = cache.map((product) => {
+        const product_ID = product.product_ID;
+        return { product_ID };
+      });
+      setProductList(newProductList);
+    }
+  }, [cache]);
+
+  console.log(productList);
+  const productList1 = [{ product_ID: 1 }, { product_ID: 2 }, { product_ID: 3 }];
+  const [cache3, setCache3] = useState([]);
+  const cacheCart3 = [];
+  useEffect(() => {
+    const db = getDatabase();
+    // Update the document title using the browser API
+    const cacheCart3 = [];
+    productList.forEach((product) => {
+      const productID = product.product_ID;
+      const starCountRef = ref(db, `Product/${productID}`);
+      get(starCountRef)
+        .then((snapshot) => {
+          cacheCart3.push(snapshot.val());
+          if (cacheCart3.length === productList.length) {
+            setCache3(cacheCart3);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  }, [productList]);
+  console.log(cache3);
+  const [countSell, setcountSell] = useState([]);
+
+  // Lấy giá trị 'name' từ mỗi đối tượng trong mảng people1 và lưu vào mảng people2
+  useEffect(() => {
+    if (Array.isArray(cache)) {
+      const newcountSell = cache3.map((product) => {
+        const category_ID = product.category_ID;
+        return { category_ID };
+      });
+      setcountSell(newcountSell);
+    }
+  }, [cache3]);
+  console.log(countSell);
+  const target = 'Laptop';
+  const count = countSell.reduce((acc, val) => {
+    return val.category_ID.toLowerCase() === target.toLowerCase() ? acc + 1 : acc;
+  }, 0);
+  console.log(count);
+  const target2 = 'Headphone';
+  const count2 = countSell.reduce((acc, val) => {
+    return val.category_ID.toLowerCase() === target2.toLowerCase() ? acc + 1 : acc;
+  }, 0);
+  console.log(count2);
+  const target3 = 'Keyboard';
+  const count3 = countSell.reduce((acc, val) => {
+    return val.category_ID.toLowerCase() === target3.toLowerCase() ? acc + 1 : acc;
+  }, 0);
+  console.log(count3);
+  const target4 = 'Mouse';
+  const count4 = countSell.reduce((acc, val) => {
+    return val.category_ID.toLowerCase() === target4.toLowerCase() ? acc + 1 : acc;
+  }, 0);
+  console.log(count4);
+  const target5 = 'Gamepad';
+  const count5 = countSell.reduce((acc, val) => {
+    return val.category_ID.toLowerCase() === target5.toLowerCase() ? acc + 1 : acc;
+  }, 0);
+  console.log(count5);
+  const cacheOrder = [];
+  const [cachee, setCachee] = useState('');
+
+  useEffect(() => {
+    const db = getDatabase();
+    // Update the document title using the browser API
+    const starCountRef = ref(db, 'Order/');
+    onValue(
+      starCountRef,
+      (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          setCachee((pre) => [...pre, childSnapshot.val()]);
+          cacheOrder.push(cachee);
+        });
+      },
+
+      {
+        onlyOnce: true,
+      }
+    );
+  }, []);
+  const [totalPrice, setTotalPrice] = useState([]);
+
+  // Lấy giá trị 'name' từ mỗi đối tượng trong mảng people1 và lưu vào mảng people2
+  useEffect(() => {
+    if (Array.isArray(cache)) {
+      const newcountSell = cachee.map((product) => {
+        const order_total = product.order_total;
+        return { order_total };
+      });
+      setTotalPrice(newcountSell);
+    }
+  }, [cachee]);
+  console.log(totalPrice);
+  const newArray = totalPrice.map((obj) => {
+    const order_total = parseInt(obj.order_total, 10);
+    return { ...obj, order_total };
+  });
+
+  console.log(newArray);
+  const sum = newArray.reduce((acc, obj) => acc + obj.order_total, 0);
+  console.log(sum);
+  // In mảng people2 để kiểm tra xem giá trị đã được lưu thành công hay chưa
+  // const product = [];
+  // cache.forEach((id) => {
+  //   const product_ID = id.product_ID;
+  //   product_ID.push({ product_ID });
+  // });
+
+  // In mảng people2 để kiểm tra xem giá trị đã được lưu thành công hay chưa
+  // console.log(product);
+  // const ids = [];
+  // for (const key in cache) {
+  //   if (cache.hasOwnProperty(key)) {
+  //     ids.push(cache[key].ID);
+  //   }
+  // }
   // const IdArray = [];
 
   // useEffect(() => {
@@ -116,7 +266,7 @@ export default function DashboardAppPage() {
   useEffect(() => {
     const db = getDatabase();
     // Update the document title using the browser API
-    const starCountRef = ref(db, 'Payment/');
+    const starCountRef = ref(db, 'Order/');
     onValue(
       starCountRef,
       (snapshot) => {
@@ -187,8 +337,8 @@ export default function DashboardAppPage() {
       starCountRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          setData((pre) => [...pre, childSnapshot.val()]);
-          Datatour.push(data);
+          setDatal((pre) => [...pre, childSnapshot.val()]);
+          Datatourl.push(datal);
         });
       },
 
@@ -205,8 +355,8 @@ export default function DashboardAppPage() {
       starCountRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          setData1((pre) => [...pre, childSnapshot.val()]);
-          Datatour1.push(data1);
+          setDatam((pre) => [...pre, childSnapshot.val()]);
+          Datatourm.push(datam);
         });
       },
 
@@ -223,8 +373,8 @@ export default function DashboardAppPage() {
       starCountRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          setData2((pre) => [...pre, childSnapshot.val()]);
-          Datatour2.push(data2);
+          setDatak((pre) => [...pre, childSnapshot.val()]);
+          Datatourk.push(datak);
         });
       },
 
@@ -241,8 +391,8 @@ export default function DashboardAppPage() {
       starCountRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          setData3((pre) => [...pre, childSnapshot.val()]);
-          Datatour3.push(data3);
+          setDatah((pre) => [...pre, childSnapshot.val()]);
+          Datatourh.push(datah);
         });
       },
 
@@ -259,8 +409,8 @@ export default function DashboardAppPage() {
       starCountRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          setData4((pre) => [...pre, childSnapshot.val()]);
-          Datatour4.push(data4);
+          setDatag((pre) => [...pre, childSnapshot.val()]);
+          Datatourg.push(datag);
         });
       },
 
@@ -269,7 +419,6 @@ export default function DashboardAppPage() {
       }
     );
   }, []);
-  console.log(data4.length);
   const theme = useTheme();
 
   return (
@@ -281,7 +430,7 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Total Revenue" total={sumValues1} icon={'simple-icons:sellfy'} />
+            <AppWidgetSummary title="Total Revenue" total={sum} icon={'simple-icons:sellfy'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
@@ -291,7 +440,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title="Sold Products"
-              total={objectCount}
+              total={cachee.length}
               color="warning"
               icon={'material-symbols:order-approve'}
             />
@@ -305,11 +454,11 @@ export default function DashboardAppPage() {
             <AppCurrentVisits
               title="Selled"
               chartData={[
-                { label: 'Laptop', value: 4443 },
-                { label: 'Mouse', value: 5435 },
-                { label: 'Keyboard', value: 1443 },
-                { label: 'Gamepad', value: 4443 },
-                { label: 'HeadPhone', value: 4443 },
+                { label: 'Laptop', value: count },
+                { label: 'Mouse', value: count4 },
+                { label: 'Keyboard', value: count3 },
+                { label: 'Gamepad', value: count5 },
+                { label: 'HeadPhone', value: count2 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -324,12 +473,15 @@ export default function DashboardAppPage() {
             <AppConversionRates
               title="Current Amount"
               chartData={[
-                { label: 'Laptop', value: data.length },
-                { label: 'Mouse', value: data1.length },
-                { label: 'Gamepad', value: data4.length },
-                { label: 'Keyboard', value: data2.length },
-                { label: 'Headphone', value: data3.length },
-                { label: 'Total', value: data.length + data1.length + data2.length + data3.length + data4.length },
+                { label: 'Laptop', value: datal.length / 2 },
+                { label: 'Mouse', value: datam.length / 2 },
+                { label: 'Gamepad', value: datag.length / 2 },
+                { label: 'Keyboard', value: datak.length / 2 },
+                { label: 'Headphone', value: datah.length / 2 },
+                {
+                  label: 'Total',
+                  value: (datal.length + datam.length + datah.length + datak.length + datag.length) / 2,
+                },
               ]}
             />
           </Grid>
