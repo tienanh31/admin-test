@@ -219,11 +219,107 @@ export default function DashboardAppPage() {
       }
     );
   }, []);
+  const [totalOrder, setTotalOrder] = useState([]);
+
+  useEffect(() => {
+    if (Array.isArray(cachee)) {
+      const formattedOrders = cachee.map((order) => {
+        const order_date = order.order_date;
+        const order_total = order.order_total;
+        const order_status = order.order_status;
+
+        return { order_date, order_total, order_status };
+      });
+      setTotalOrder(formattedOrders);
+    }
+  }, [cachee]);
+  console.log(totalOrder);
+  const formattedOrders = totalOrder.map((order) => {
+    const date = new Date(order.order_date);
+    const formattedDate = date.toISOString().substring(0, 10);
+    return { order_date: formattedDate };
+  });
+  console.log(totalOrder.order_status);
+  const array = [
+    '01-01-2003',
+    '02/01/2003',
+    '03/01/2003',
+    '04/01/2003',
+    '05/01/2003',
+    '06/01/2003',
+    '07/01/2003',
+    '08/01/2003',
+    '09/01/2003',
+    '10/01/2003',
+    '11/01/2003',
+    '12/01/2003',
+  ];
+  console.log(formattedOrders);
+  const prices = formattedOrders.map((product) => product.order_date);
+  console.log(prices);
+  const firstDays = prices.map((date) => {
+    const month = new Date(date).getMonth() + 1;
+    let quarterStart;
+    if (month >= 1 && month <= 3) {
+      quarterStart = new Date(new Date(date).getFullYear(), 0, 2);
+    } else if (month >= 4 && month <= 6) {
+      quarterStart = new Date(new Date(date).getFullYear(), 3, 2);
+    } else if (month >= 7 && month <= 9) {
+      quarterStart = new Date(new Date(date).getFullYear(), 6, 2);
+    } else {
+      quarterStart = new Date(new Date(date).getFullYear(), 9, 2);
+    }
+    return quarterStart.toISOString().slice(0, 10);
+  });
+
+  console.log(firstDays);
+  const countOrder = firstDays.reduce((acc, fruit) => {
+    acc[fruit] = (acc[fruit] || 0) + 1;
+    return acc;
+  }, {});
+
+  console.log(countOrder);
+
+  const countOrderValues = Object.values(countOrder).map((number) => Number(number));
+  console.log(countOrderValues);
+
+  const uniqueStrings = firstDays.filter((string, index) => {
+    return firstDays.indexOf(string) === index;
+  });
+  console.log(faker.date.past());
+  console.log(uniqueStrings);
+  const sortedDates = uniqueStrings.sort((a, b) => {
+    const dateA = new Date(a);
+    const dateB = new Date(b);
+    return dateA - dateB;
+  });
+
+  console.log(sortedDates);
+  const quarterlyTotals = totalOrder.reduce(
+    (totals, transaction) => {
+      const month = new Date(transaction.order_date).getMonth() + 1;
+      if (month >= 1 && month <= 3) {
+        totals.a += parseInt(transaction.order_total, 10);
+      } else if (month >= 4 && month <= 6) {
+        totals.b += parseInt(transaction.order_total, 10);
+      } else if (month >= 7 && month <= 9) {
+        totals.c += parseInt(transaction.order_total, 10);
+      } else {
+        totals.d += parseInt(transaction.order_total, 10);
+      }
+      return totals;
+    },
+    { a: 0, b: 0, c: 0, d: 0 }
+  );
+
+  console.log(quarterlyTotals); // { a: 450, b: 725, c: 850, d: 1000 }
+  const numberValues = Object.values(quarterlyTotals).map((number) => Number(number));
+  console.log(numberValues);
   const [totalPrice, setTotalPrice] = useState([]);
 
   // Lấy giá trị 'name' từ mỗi đối tượng trong mảng people1 và lưu vào mảng people2
   useEffect(() => {
-    if (Array.isArray(cache)) {
+    if (Array.isArray(cachee)) {
       const newcountSell = cachee.map((product) => {
         const order_total = product.order_total;
         return { order_total };
@@ -322,7 +418,7 @@ export default function DashboardAppPage() {
       }
     );
   }, []);
-
+  const date = ['2022-12-15', '2022-12-30', '2023-04-01', '2022-08-15', '2023-11-30'];
   const countObjects1 = (data8) => {
     return data8.length;
   };
@@ -449,6 +545,33 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="Liked" total={objectCount1} color="error" icon={'ic:baseline-adobe'} />
           </Grid>
+          <Grid item xs={12} md={6} lg={8}>
+            <AppWebsiteVisits
+              title="Revenue"
+              chartLabels={sortedDates}
+              chartData={[
+                {
+                  name: 'Order',
+                  type: 'column',
+                  fill: 'solid',
+                  data: countOrderValues,
+                },
+                {
+                  name: 'Cache Revenue',
+
+                  type: 'area',
+                  fill: 'gradient',
+                  data: numberValues,
+                },
+                {
+                  name: 'Revenue',
+                  type: 'line',
+                  fill: 'solid',
+                  data: numberValues,
+                },
+              ]}
+            />
+          </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
@@ -499,7 +622,7 @@ export default function DashboardAppPage() {
                   'App is created',
                 ][index],
                 type: `order${index + 1}`,
-                time: faker.date.past(),
+                time: ['19 Dec 2023', '07 Jul 2022 ', '04 Mar 2023 ', '31 Dec 2022 ', '01 Dec 2022'][index],
               }))}
             />
           </Grid>
